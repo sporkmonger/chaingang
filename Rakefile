@@ -25,9 +25,9 @@ RUBY_FORGE_USER    = "sporkmonger"
 RUBY_FORGE_PATH    = "/var/www/gforge-projects/#{RUBY_FORGE_PROJECT}"
 RUBY_FORGE_URL     = "http://#{RUBY_FORGE_PROJECT}.rubyforge.org/"
 
-PKG_SUMMARY        = "Package Summary"
+PKG_SUMMARY        = "Worker Process Framework"
 PKG_DESCRIPTION    = <<-TEXT
-ChainGang is a drop-dead simple worker process framework intended for use with a message queue.
+ChainGang is a drop-dead simple worker process framework.
 TEXT
 
 PKG_FILES = FileList[
