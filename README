@@ -9,13 +9,40 @@ License::   MIT
 
 ChainGang is a drop-dead simple worker process framework.
 
-== Features
-
-* A feature list goes here.
-
 == Example Usage
 
-# Some code goes here.
+  require "rubygems"
+  require "chaingang"
+
+  class Worker
+    def setup
+      # Set up connections here
+    end
+
+    def teardown
+      # Tear down connections here
+    end
+
+    def call
+      # Do some work
+      sleep 1
+    end
+  end
+  ChainGang.prepare(Worker.new)
+
+Any object that responds to the :call message may be used by ChainGang as a
+worker.  The optional :setup and :teardown messages may also be implemented
+if necessary.  Workers are primarily controlled via rake tasks, but may also
+be run manually.  Because the :call message is the only message required,
+a block may also be used as a worker:
+
+  require "rubygems"
+  require "chaingang"
+
+  ChainGang.prepare do
+    # Do some work
+    sleep 1
+  end
 
 == Requirements
 
