@@ -10,10 +10,10 @@ module ChainGang
       # The path to the daemon's worker
       attr_accessor :worker
 
-      # Defines a new task, using the name +name+.
-      def initialize(name=:chaingang)
-        @name = name
-        @worker = nil
+      # Defines a new task, using the path to the worker.
+      def initialize(worker)
+        @worker = worker
+        @name = File.basename(name).gsub(/\.rb$/, "").downcase
         yield self if block_given?
         build_tasks
       end
