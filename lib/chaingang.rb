@@ -98,7 +98,13 @@ module ChainGang
       raise TypeError, "Expected ChainGang::Daemon, got #{daemon.class}."
     end
     pids = self.read_pidfile(daemon)
-    pids.each { |pid| Process.kill("TERM", pid) }
+    pids.each do |pid|
+      begin
+        Process.kill("TERM", pid)
+      rescue Errno::ESRCH
+        # Ignore issues with missing processes
+      end
+    end
     self.clear_pidfile(daemon)
     return pids
   end
