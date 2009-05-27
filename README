@@ -1,0 +1,26 @@
+== ChainGang
+
+Homepage::  chaingang.rubyforge.org[http://chaingang.rubyforge.org/]
+Author::    Bob Aman  (mailto:bob@sporkmonger.com)
+Copyright:: Copyright © 2009 Bob Aman
+License::   MIT
+
+== Description
+
+ChainGang is a drop-dead simple worker process framework.
+
+== Features
+
+* A feature list goes here.
+
+== Example Usage
+
+# Some code goes here.
+
+== Requirements
+
+* ChainGang has no dependencies.
+
+== Install
+
+* sudo gem install chaingang
