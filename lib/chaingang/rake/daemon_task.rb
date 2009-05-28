@@ -35,6 +35,14 @@ module ChainGang
         task :restart do
           exec("ruby -e \"require '#{worker}'; ChainGang.restart_daemons\"")
         end
+        desc "Status of the #{name} daemon"
+        task :status do
+          exec(
+            "ruby -e \"require '#{worker}'; " +
+            "ChainGang.check_daemons.each { |(pid, alive)| " +
+            "puts pid.to_s + ': ' + (alive ? 'alive' : 'dead')}\""
+          )
+        end
         self
       end
     end

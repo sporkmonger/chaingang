@@ -117,4 +117,22 @@ module ChainGang
     pids = self.stop_daemons(daemon)
     return pids.inject([]) { |accu, _| accu << self.fork_daemon(daemon) }
   end
+
+  def self.check_daemons(daemon=nil)
+    daemon = self.prepared_daemon if daemon == nil
+    if !daemon.kind_of?(ChainGang::Daemon)
+      raise TypeError, "Expected ChainGang::Daemon, got #{daemon.class}."
+    end
+    pids = self.read_pidfile(daemon)
+    return pids.inject({}) do |accu, pid|
+      begin
+        Process.getpriority(Process::PRIO_PROCESS, pid)
+        status = true
+      rescue Errno::ESRCH
+        status = false
+      end
+      accu[pid] = status
+      accu
+    end
+  end
 end
